@@ -8,10 +8,9 @@ class DetailsBook extends React.Component {
         super(props);
         this.state={
                 book:[],
-                bookId:'',
-                request:[]
         }
         this.HandleAddToCart = this.HandleAddToCart.bind(this);
+        this.HandleRemoveSession = this.HandleRemoveSession.bind(this);
     }
     componentDidMount(){
         axios.get(`/api/books/${this.props.match.params.id}`).then(response=>{
@@ -29,14 +28,13 @@ class DetailsBook extends React.Component {
         console.log(id)
         axios.get(`/api/addtocart/${id}`).then(
             response=>{
-                this.setState({
-                    request:response.data
-                })
-                console.log(this.state.request);
-            }
+                window.location.href = "http://127.0.0.1:8000/cart";            }
         ).catch(e=>{
             console.log(e)
         })
+    }
+    HandleRemoveSession(){
+            axios.get(`/api/removeallitems`)
     }
     render(){
         const{book} = this.state;
@@ -89,6 +87,9 @@ class DetailsBook extends React.Component {
                             <form onSubmit={this.HandleAddToCart}>
                                 <button type="submit" class="singledisplay--addtocart--button--button">Add to cart</button>
                             </form>
+                            <form onSubmit={this.HandleRemoveSession}>
+                            <button type="submit" class="singledisplay--addtocart--button--button">Remove session</button>
+                        </form>
                         </div>
                     </div>
                 </div>

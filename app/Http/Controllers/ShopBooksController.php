@@ -51,15 +51,24 @@ class ShopBooksController extends Controller
         $cart = new Cart($oldCart);
         $books = $cart->items;
         $TotalPrice = $cart->TotalPrice;
-        return response()->json([$books,$TotalPrice]);   
+        if(Session::has('coupon')){
+            $coupon = Session::get('coupon');
+        }else{
+            $coupon = null;
+        }
+        return response()->json([$books,$TotalPrice,$coupon]);   
     }
-    public function removeAllItems(Request $request, $id){
-        $cart = $request->session()->pull('cart',[]);
-        $request->session()->forget($cart);
+    public function removeAllItems(Request $request){
+        $request->session()->flush();
     }
-    public function removeItem($id){
-        $cart = Session::get('cart');
-        unset($cart->items[$id]);
-        Session::put('cart',$cart);
+    public function removeItem(Request $request, $id){
+        $book = Book::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->decrementTotalPrice($book,$book->id);
+        $request->session()->put('cart',$cart); // has to put after a function action.
+
+        $cartsession = Session::get('cart');    // this is another session function for unsetting session item.
+        unset($cartsession->items[$id]);
     }
 }

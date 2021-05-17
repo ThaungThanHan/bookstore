@@ -2117,6 +2117,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ShopBook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/ShopBook */ "./resources/js/components/ShopBook.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2144,6 +2146,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["X-CSRF-TOKEN"]) = $('meta[name="csrf-token"]').attr('content');
+var headers = {
+  'Content-Type': 'application/json',
+  'Authorization': 'JWT fefege...'
+};
 
 var CartPage = /*#__PURE__*/function (_React$Component) {
   _inherits(CartPage, _React$Component);
@@ -2158,11 +2165,16 @@ var CartPage = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       books: [],
-      TotalPrice: ''
+      TotalPrice: '',
+      coupon_code: '',
+      coupon: []
     };
     _this.incrementqty = _this.incrementqty.bind(_assertThisInitialized(_this));
     _this.decrementqty = _this.decrementqty.bind(_assertThisInitialized(_this));
     _this.removeItem = _this.removeItem.bind(_assertThisInitialized(_this));
+    _this.handleApplyCoupon = _this.handleApplyCoupon.bind(_assertThisInitialized(_this));
+    _this.onChangeCoupon = _this.onChangeCoupon.bind(_assertThisInitialized(_this));
+    _this.removeCoupon = _this.removeCoupon.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2174,15 +2186,18 @@ var CartPage = /*#__PURE__*/function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/getcart").then(function (response) {
         var bookscart = response.data[0];
         var CartTotal = response.data[1];
+        var couponsession = response.data[2];
         JSON.parse(JSON.stringify(bookscart));
         JSON.parse(JSON.stringify(CartTotal));
+        JSON.parse(JSON.stringify(couponsession));
 
         _this2.setState({
           books: Object.values(bookscart),
-          TotalPrice: CartTotal
+          TotalPrice: CartTotal,
+          coupon: couponsession
         });
 
-        console.log(_this2.state.books);
+        console.log(_this2.state.coupon);
       });
     }
   }, {
@@ -2204,13 +2219,42 @@ var CartPage = /*#__PURE__*/function (_React$Component) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/removeitem/".concat(id));
     }
   }, {
+    key: "handleApplyCoupon",
+    value: function handleApplyCoupon(e) {
+      e.preventDefault();
+      window.location.reload();
+      var coupon_code = this.state.coupon_code;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/coupon", {
+        coupon_code: coupon_code
+      }).then(function (response) {
+        JSON.stringify(coupon_code); // console.log(response.data)
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    }
+  }, {
+    key: "onChangeCoupon",
+    value: function onChangeCoupon(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    }
+  }, {
+    key: "removeCoupon",
+    value: function removeCoupon(event) {
+      window.location.reload();
+      event.preventDefault();
+      axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/coupon")["catch"](function (error) {
+        console.log(error.response);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
       var _this$state = this.state,
           books = _this$state.books,
-          TotalPrice = _this$state.TotalPrice;
+          TotalPrice = _this$state.TotalPrice,
+          coupon = _this$state.coupon;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, books.length == 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h1", null, " Your cart is empty ") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "cartpage"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
@@ -2284,6 +2328,7 @@ var CartPage = /*#__PURE__*/function (_React$Component) {
             return _this3.decrementqty(book.item.id);
           },
           type: "submit",
+          disabled: book.qty == 1,
           style: {
             border: '1px solid blue',
             padding: '.4rem',
@@ -2321,31 +2366,50 @@ var CartPage = /*#__PURE__*/function (_React$Component) {
         "class": "summary--header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h2", null, "Order Summary")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "summary--subtitle"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " ITEMS ", books.length, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " $ ", TotalPrice, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-        "class": "summary--shipping"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " SHIPPING "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("select", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " ITEMS ", books.length, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " $ ", TotalPrice, " ")), coupon ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+        "class": "summary--subtitle"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " DISCOUNT(", coupon.name, ") "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " - $ ", coupon.discount, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+        onClick: this.removeCoupon,
         style: {
-          width: '100%'
+          fontSize: '.8rem'
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("option", null, "Select Shipping"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      }, "Remove"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "summary--promocode"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " PROMO CODE "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, " PROMO CODE "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("form", {
+        onSubmit: this.handleApplyCoupon
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+        onChange: this.onChangeCoupon,
+        value: this.state.value,
         style: {
           marginBottom: '2rem',
           width: '100%',
           padding: '1rem',
           fontSize: '1rem'
         },
+        name: "coupon_code",
         type: "text",
         placeholder: "Enter promo code"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("a", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+        type: "submit",
         href: "#",
         "class": "summary--button"
-      }, "Apply"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      }, "Apply"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "summary--checkout"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "summary--checkout--total"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "TOTAL COST"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", null, "$462.98")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("a", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", {
+        style: {
+          fontWeight: 'bold'
+        }
+      }, "GRAND TOTAL"), coupon ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", {
+        style: {
+          fontWeight: 'bold'
+        }
+      }, "$ ", TotalPrice - coupon.discount) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", {
+        style: {
+          fontWeight: 'bold'
+        }
+      }, "$ ", TotalPrice)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("a", {
         href: "#",
         "class": "summary--checkout--button"
       }, " CHECKOUT ")))));
@@ -2416,11 +2480,10 @@ var DetailsBook = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      book: [],
-      bookId: '',
-      request: []
+      book: []
     };
     _this.HandleAddToCart = _this.HandleAddToCart.bind(_assertThisInitialized(_this));
+    _this.HandleRemoveSession = _this.HandleRemoveSession.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2440,8 +2503,6 @@ var DetailsBook = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "HandleAddToCart",
     value: function HandleAddToCart(event) {
-      var _this3 = this;
-
       event.preventDefault();
       var history = this.props.history;
       var id = this.state.book.map(function (_ref) {
@@ -2450,14 +2511,15 @@ var DetailsBook = /*#__PURE__*/function (_React$Component) {
       });
       console.log(id);
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/addtocart/".concat(id)).then(function (response) {
-        _this3.setState({
-          request: response.data
-        });
-
-        console.log(_this3.state.request);
+        window.location.href = "http://127.0.0.1:8000/cart";
       })["catch"](function (e) {
         console.log(e);
       });
+    }
+  }, {
+    key: "HandleRemoveSession",
+    value: function HandleRemoveSession() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/removeallitems");
     }
   }, {
     key: "render",
@@ -2527,7 +2589,12 @@ var DetailsBook = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
         type: "submit",
         "class": "singledisplay--addtocart--button--button"
-      }, "Add to cart"))))));
+      }, "Add to cart")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("form", {
+        onSubmit: this.HandleRemoveSession
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+        type: "submit",
+        "class": "singledisplay--addtocart--button--button"
+      }, "Remove session"))))));
     }
   }]);
 
