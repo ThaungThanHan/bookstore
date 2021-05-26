@@ -14,6 +14,7 @@ class ShopBook extends React.Component{
         this.state={
             books:[]
         }
+        this.addtocart = this.addtocart.bind(this);
     }
     componentDidMount(){
         axios.get('/api/books').then(response => {
@@ -21,6 +22,11 @@ class ShopBook extends React.Component{
                 books: response.data
             })
             console.log(this.state.books);
+        })
+    }
+    addtocart(id){
+        axios.get(`/api/addtocart/${id}`).then(response=>{
+            window.location.reload();
         })
     }
     
@@ -49,7 +55,10 @@ class ShopBook extends React.Component{
                 </div>
                 <div class="books">
                     <div class="books--filter">
-                    
+                        <div class="books--filter--search">
+                            <input type="text" placeholder="Search books"/>
+                        </div><hr/>
+                        
                     </div>
                     <div class="books--display">
                         {books.map(book=>(
@@ -62,8 +71,11 @@ class ShopBook extends React.Component{
                             </div>
                             <div class="books--display--cards--body">
                                 <span>{book.author}</span>
-                                <h5>{book.title} - <span>{book.edition}</span></h5><br/><br/>
-                                <p>{book.price} <a href="#">add to cart</a></p>
+                                <h5>{book.title}</h5><br/><br/>
+                                <div class="books--display--cards--body--priceandbutton">
+                                <p>$ {book.price}</p>
+                                <button onClick={()=>this.addtocart(book.id)} class="books--display--cards--body--priceandbutton--button">Add to cart</button>
+                                </div>
                             </div>
                         </div>
                         ))}

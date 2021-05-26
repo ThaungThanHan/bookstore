@@ -18,7 +18,9 @@ class CreateBooksTable extends Migration
             $table->string('title')->unique();
             $table->string('author');
             $table->string('edition');
-            $table->string('category');
+            $table->string('genre');
+            $table->string('genre2')->nullable();
+            $table->string('genre3')->nullable();
             $table->integer('price');
             $table->longtext('description');
             $table->tinyInteger('rating');
@@ -28,8 +30,8 @@ class CreateBooksTable extends Migration
             $table->string('dimensions');
             $table->string('isbn10');
             $table->string('isbn13');
-            $table->string('frontimage');
-            $table->string('backimage');
+            $table->string('frontimage')->nullable();
+            $table->string('backimage')->nullable();    
             $table->timestamps();
         });
     }

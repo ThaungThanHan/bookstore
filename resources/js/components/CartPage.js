@@ -47,24 +47,29 @@ class CartPage extends React.Component {
         })
     }
     incrementqty(id){
-        window.location.reload()
-        axios.get(`/api/addtocart/${id}`)
+        axios.get(`/api/addtocart/${id}`).then(response=>{
+            window.location.reload()
+        })
+        
     }
     decrementqty(id){
-        window.location.reload()
-        axios.get(`/api/removefromcart/${id}`)
+        axios.get(`/api/removefromcart/${id}`).then(response=>{
+            window.location.reload()
+        })
     }
     removeItem(id){
-        window.location.reload()
-        axios.get(`/api/removeitem/${id}`)
+        axios.get(`/api/removeitem/${id}`).then(response=>{
+            window.location.reload()
+        })
     }
     handleApplyCoupon(e){
         e.preventDefault();
-        window.location.reload()
+        // window.location.reload()
         const coupon_code = this.state.coupon_code;
         axios.post(`/api/coupon`,{coupon_code:coupon_code}
         ).then(response=>{
             JSON.stringify(coupon_code)
+            window.location.reload()
             // console.log(response.data)
         }).catch(error=>{
             console.log(error.response)
@@ -76,9 +81,9 @@ class CartPage extends React.Component {
         })
     }
     removeCoupon(event){
-        window.location.reload()
-        event.preventDefault();
-        axios.delete(`/api/coupon`).catch(error=>{
+        axios.delete(`/api/coupon`).then(response=>{
+            window.location.reload();
+        }).catch(error=>{
             console.log(error.response)
         })
     }
@@ -115,7 +120,7 @@ class CartPage extends React.Component {
                                     <h5 class="productdetails--details--detail">{book.item.title}</h5>
                                     <h6 class="productdetails--details--detail">{book.item.edition}</h6>
                                     <p class="productdetails--details--detail">
-                                    <button onClick={()=>this.removeItem(book.item.id)} style={{border:'none',backgroundColor:'white'}}> Remove </button>
+                                    <button onClick={()=>this.removeItem(book.item.id)} style={{border:'none',backgroundColor:'#f8f8f8',color:'#DC8920'}}> Remove </button>
                                     </p>
                                 </div>
                             </div>
@@ -125,7 +130,7 @@ class CartPage extends React.Component {
                             <button onClick={()=>this.decrementqty(book.item.id)} type="submit" disabled={book.qty==1}
                              style={{border:'1px solid blue',padding:'.4rem',borderRadius:'50%'}}> - </button>
                             <span style={{border:'1px solid grey',padding:'.5rem'}}> {book.qty} </span>
-                                <button onClick={()=>this.incrementqty(book.item.id)} type="submit" style={{border:'1px solid blue',padding:'.4rem',borderRadius:'50%'}}> + </button>
+                                <button onClick={()=>this.incrementqty(book.item.id,event)} type="submit" style={{border:'1px solid blue',padding:'.4rem',borderRadius:'50%'}}> + </button>
                             </div>
                         </td>
                         <td style={{textAlign:'center'}} class="tg-0pky">$ {book.item.price}</td>
@@ -150,7 +155,7 @@ class CartPage extends React.Component {
                     <p> DISCOUNT({coupon.name}) </p>
                     <p> - $ {coupon.discount} </p>
                 </div>
-                <span><button onClick={this.removeCoupon} style={{fontSize:'.8rem'}}>Remove</button></span>
+                <span><button onClick={this.removeCoupon} style={{border:'none',backgroundColor:'#F6355E',color:'white'}}>Remove Coupon</button></span>
                 </div>
                 :
                     <div class="summary--promocode">
@@ -166,7 +171,7 @@ class CartPage extends React.Component {
                         <p style={{fontWeight:'bold'}}>GRAND TOTAL</p>
                         {coupon ? <p style={{fontWeight:'bold'}}>$ {TotalPrice - coupon.discount}</p> : <p style={{fontWeight:'bold'}}>$ {TotalPrice}</p>}
                     </div>
-                    <a href="#" class="summary--checkout--button"> CHECKOUT </a>
+                    <a href="/checkout" class="summary--checkout--button"> CHECKOUT </a>
                 </div>
             </div>
             </div>

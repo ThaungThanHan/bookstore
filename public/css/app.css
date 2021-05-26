@@ -9938,6 +9938,12 @@ li, a {
   font-weight: bold;
 }
 
+.herogrids--coffee--body--button:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #ecca85;
+}
+
 .herogrids--coffee--image {
   border: 1px;
   width: 20rem;
@@ -9967,6 +9973,12 @@ li, a {
   border-radius: 2rem;
   background-color: #F2DCB1;
   font-weight: bold;
+}
+
+.herogrids--accessory--body--button:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #ecca85;
 }
 
 .herogrids--accessory--image {
@@ -9999,6 +10011,7 @@ li, a {
   border: 1px solid black;
   width: 22rem;
   height: 30rem;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.05);
 }
 
 .books--display--cards:not(:last-child) {
@@ -10034,7 +10047,29 @@ li, a {
 }
 
 .books--display--cards--body {
-  height: 8rem;
+  height: 10rem;
+  padding: 0 1rem;
+}
+
+.books--display--cards--body--priceandbutton {
+  margin-top: -1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.books--display--cards--body--priceandbutton--button {
+  border: none;
+  background: none;
+  border-radius: .5rem;
+  background-color: #f3c873;
+  font-weight: bold;
+  padding: .5rem;
+}
+
+.books--display--cards--body--priceandbutton--button:hover {
+  text-decoration: none;
+  color: white;
 }
 
 .detailsbooks {
@@ -10155,6 +10190,7 @@ li, a {
 .cart {
   width: 70%;
   padding: 2rem 6rem;
+  background-color: #f8f8f8;
 }
 
 .cart--header {
@@ -10293,5 +10329,171 @@ li, a {
   will-change: opacity, transform;
   box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08), inset 0 1px 0 #829fff;
   border-radius: 4px;
+}
+
+.checkout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 4rem 10rem;
+}
+
+.orderform {
+  background-color: white;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.21);
+  width: 55rem;
+  height: 30rem;
+  padding: 2rem 2rem;
+}
+
+.billingdetails {
+  width: 50rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.billingdetails--inputbox {
+  width: 20rem;
+}
+
+.billingdetails--details {
+  font-weight: bold;
+  margin: 0;
+}
+
+.billingdetails--input {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #ccc;
+  padding: .5rem;
+  font-size: 1rem;
+  transition: all .2s;
+}
+
+.billingdetails--input:focus {
+  border-color: #f5b25b;
+}
+
+.billingdetails--input:valid {
+  border-color: #f5b25b;
+}
+
+.billingdetails--button {
+  width: 13rem;
+  height: 4rem;
+  border: none;
+  background-color: #DC8920;
+  color: white;
+}
+
+.billingdetails--button:hover {
+  background-color: #f5b25b;
+  text-decoration: none;
+  color: white;
+}
+
+.billingdetails--button2 {
+  width: 13rem;
+  height: 4rem;
+  border: none;
+  background-color: #F6355E;
+  color: white;
+  text-decoration: none;
+}
+
+.billingdetails--button2:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #F6718D;
+}
+
+.orderitems {
+  background-color: white;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.21);
+  padding: 2rem 4rem;
+  width: 40rem;
+  height: 30rem;
+}
+
+.orderitems--items {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderitems--total {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderitems--couponapplied {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderitems--grandtotal {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.registration {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 4rem;
+}
+
+.reigsterform {
+  border: none;
+  width: 40rem;
+  padding: 5rem;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.21);
+}
+
+.adminpanel {
+  display: flex;
+}
+
+.adminsidebar {
+  border: none;
+  padding-top: 1rem;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.21);
+  margin-left: 0;
+  width: 20rem;
+  height: auto;
+}
+
+.adminsidebar--links {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem 4rem;
+  justify-content: space-between;
+  height: 3rem;
+  margin-top: -.5rem;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.adminsidebar--links:hover {
+  background-color: antiquewhite;
+  text-decoration: none;
+}
+
+.adminsidebar--links--link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.admincontent {
+  border: 1px solid red;
+  padding: 1rem 4rem;
+  width: 100vw;
 }
 
