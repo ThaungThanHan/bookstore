@@ -12,22 +12,34 @@ class BooksController extends Controller
         return response()->json($books);
     }
     public function create(Request $request){
+        $decodedrequest = json_decode($request->admininput);    // jsonify string formdata back.
+        $imagerequest = json_decode($request->frontimage);
         $books = new Book;
-        $books->title = $request->title;
-        $books->edition = $request->edition;
-        $books->author = $request->author;
-        $books->genre = $request->genre;
-        $books->genre2 = $request->genre2;
-        $books->genre3 = $request->genre3;
-        $books->price = $request->price;
-        $books->description = $request->description;
-        $books->rating = $request->rating;
-        $books->printlength = $request->printlength;
-        $books->language = $request->language;
-        $books->publisher = $request->publisher;
-        $books->dimensions = $request->dimensions;
-        $books->isbn10 = $request->isbn10;
-        $books->isbn13 = $request->isbn13;
+        $books->title = $decodedrequest->title;
+        $books->edition = $decodedrequest->edition;
+        $books->author = $decodedrequest->author;
+        $books->genre = $decodedrequest->genre;
+        $books->genre2 = $decodedrequest->genre2;
+        $books->genre3 = $decodedrequest->genre3;
+        $books->price = $decodedrequest->price;
+        $books->description = $decodedrequest->description;
+        $books->rating = $decodedrequest->rating;
+        $books->printlength = $decodedrequest->printlength;
+        $books->language = $decodedrequest->language;
+        $books->publisher = $decodedrequest->publisher;
+        $books->dimensions = $decodedrequest->dimensions;
+        $books->isbn10 = $decodedrequest->isbn10;
+        $books->isbn13 = $decodedrequest->isbn13;
+
+        $imageNameFront = date('YmdHis').".".request()->frontimage->getClientOriginalExtension();   // get image name from file
+        request()->frontimage->move(public_path('images'),$imageNameFront);    // move the file
+        $books->frontimage = $imageNameFront;   // save the image name into database
+
+        $imageNameBack = date('YmdHis').".".request()->backimage->getClientOriginalExtension();   // get image name from file
+        request()->backimage->move(public_path('images'),$imageNameBack);    // move the file
+        $books->backimage = $imageNameBack;   // save the image name into database
+
         $books->save();
+        // return response()->json($imagerequest);
     }
 }

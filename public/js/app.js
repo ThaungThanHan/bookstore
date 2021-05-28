@@ -2175,6 +2175,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var FormData = __webpack_require__(/*! form-data */ "../../node_modules/form-data/lib/browser.js");
+
+
 
 
 
@@ -2207,11 +2210,12 @@ var AdminCreateBooks = /*#__PURE__*/function (_React$Component) {
       dimensions: '',
       isbn10: '',
       isbn13: '',
-      frontimage: '',
+      fromtimage: '',
       backimage: ''
     };
     _this.handleCreateBooks = _this.handleCreateBooks.bind(_assertThisInitialized(_this));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.handleImageChange = _this.handleImageChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2221,8 +2225,18 @@ var AdminCreateBooks = /*#__PURE__*/function (_React$Component) {
       this.setState(_defineProperty({}, event.target.name, event.target.value));
     }
   }, {
+    key: "handleImageChange",
+    value: function handleImageChange(event) {
+      this.setState({
+        frontimage: event.target.files[0],
+        backimage: event.target.files[1]
+      });
+      console.log(this.state.backimage);
+    }
+  }, {
     key: "handleCreateBooks",
-    value: function handleCreateBooks() {
+    value: function handleCreateBooks(e) {
+      e.preventDefault();
       var admininput = {
         title: this.state.title,
         edition: this.state.edition,
@@ -2240,7 +2254,20 @@ var AdminCreateBooks = /*#__PURE__*/function (_React$Component) {
         isbn10: this.state.isbn10,
         isbn13: this.state.isbn13
       };
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/admincreatebooks", admininput).then()["catch"](function (error) {
+      var formData = new FormData();
+      formData.append('frontimage', this.state.frontimage);
+      formData.append('backimage', this.state.backimage);
+      formData.append('admininput', JSON.stringify(admininput));
+      axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'post',
+        url: '/api/admincreatebooks',
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
         console.log(error.response.data);
       });
     }
@@ -2484,30 +2511,16 @@ var AdminCreateBooks = /*#__PURE__*/function (_React$Component) {
         "class": "billingdetails--inputbox"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", {
         "class": "billingdetails--details"
-      }, "Front Image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
+      }, "Front & Back cover "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", null, "(please select two at once)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
         style: {
           width: '30rem'
         },
         name: "frontimage",
-        onChange: this.handleInputChange,
-        value: this.state.frontimage,
+        onChange: this.handleImageChange,
         "class": "billingdetails--input",
         type: "file",
-        placeholder: "Enter you frontimage"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-        "class": "billingdetails--inputbox"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", {
-        "class": "billingdetails--details"
-      }, "Back Image"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("input", {
-        style: {
-          width: '30rem'
-        },
-        name: "backimage",
-        onChange: this.handleInputChange,
-        value: this.state.backimage,
-        "class": "billingdetails--input",
-        type: "file",
-        placeholder: "Enter you backimage"
+        placeholder: "Enter you frontimage",
+        multiple: "multiple"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
         "class": "billingdetails--button",
         type: "submit"
@@ -72116,6 +72129,18 @@ function valueEqual(a, b) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (valueEqual);
+
+
+/***/ }),
+
+/***/ "../../node_modules/form-data/lib/browser.js":
+/*!***************************************************!*\
+  !*** ../../node_modules/form-data/lib/browser.js ***!
+  \***************************************************/
+/***/ ((module) => {
+
+/* eslint-env browser */
+module.exports = typeof self == 'object' ? self.FormData : window.FormData;
 
 
 /***/ })

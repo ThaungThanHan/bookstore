@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+const FormData = require('form-data');
 import ReactDOM, { render } from 'react-dom';
 import {BrowserRouter,Route, Link, Switch} from 'react-router-dom';
 import logo from '../../images/Bookadian.png';
@@ -25,18 +26,28 @@ class AdminCreateBooks extends React.Component {
             dimensions:'',
             isbn10:'',
             isbn13:'',
-            frontimage:'',
-            backimage:'',
+            fromtimage:'',
+            backimage:''
         }
         this.handleCreateBooks = this.handleCreateBooks.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleImageChange = this.handleImageChange.bind(this);
+
     }
     handleInputChange(event){
         this.setState({
-            [event.target.name] : event.target.value
+            [event.target.name] : event.target.value,
         })
     }
-    handleCreateBooks(){
+    handleImageChange(event){
+        this.setState({
+            frontimage:event.target.files[0],
+            backimage:event.target.files[1]
+        })
+        console.log(this.state.backimage);
+    }
+    handleCreateBooks(e){
+        e.preventDefault();
         const admininput = {
             title:this.state.title,
             edition:this.state.edition,
@@ -54,9 +65,19 @@ class AdminCreateBooks extends React.Component {
             isbn10:this.state.isbn10,
             isbn13:this.state.isbn13,
         }
-        axios.post(`/api/admincreatebooks`,admininput).then(
-
-        ).catch(error=>{
+        const formData = new FormData();
+        formData.append('frontimage',this.state.frontimage);
+        formData.append('backimage',this.state.backimage);
+        formData.append('admininput',JSON.stringify(admininput));
+        axios({
+            method: 'post',
+            url: '/api/admincreatebooks',
+            data: formData,
+            headers: {'Content-Type': 'multipart/form-data' }
+            })
+            .then(function (response) {
+                console.log(response.data)
+            }).catch(error=>{
             console.log(error.response.data);
         })
     }
@@ -131,12 +152,8 @@ class AdminCreateBooks extends React.Component {
                         <input style={{width:'30rem'}} name="isbn13" onChange={this.handleInputChange} value={this.state.isbn13} class="billingdetails--input" type="text" placeholder="Enter you isbn13" required />
                         </div>
                         <div class="billingdetails--inputbox">
-                        <span class="billingdetails--details">Front Image</span>
-                        <input style={{width:'30rem'}} name="frontimage" onChange={this.handleInputChange} value={this.state.frontimage} class="billingdetails--input" type="file" placeholder="Enter you frontimage"  />
-                        </div>
-                        <div class="billingdetails--inputbox">
-                        <span class="billingdetails--details">Back Image</span>
-                        <input style={{width:'30rem'}} name="backimage" onChange={this.handleInputChange} value={this.state.backimage} class="billingdetails--input" type="file" placeholder="Enter you backimage"  />
+                        <span class="billingdetails--details">Front & Back cover </span><span>(please select two at once)</span>
+                        <input style={{width:'30rem'}} name="frontimage" onChange={this.handleImageChange} class="billingdetails--input" type="file" placeholder="Enter you frontimage" multiple="multiple" />
                         </div>
                         <button class="billingdetails--button" type="submit">Create</button>
                         </form>
