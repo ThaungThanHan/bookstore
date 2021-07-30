@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import ReactCardFlip from 'react-card-flip';
 import ReactDOM, { render } from 'react-dom';
 import {BrowserRouter,Route, Link, Switch} from 'react-router-dom';
 import frontimage from '../../images/narutofront.jpg';
@@ -8,9 +9,10 @@ class DetailsBook extends React.Component {
         super(props);
         this.state={
                 book:[],
+                isFlipped:false
         }
         this.HandleAddToCart = this.HandleAddToCart.bind(this);
-        this.HandleRemoveSession = this.HandleRemoveSession.bind(this);
+        this.HandleFlip = this.HandleFlip.bind(this);
     }
     componentDidMount(){
         axios.get(`/api/books/${this.props.match.params.id}`).then(response=>{
@@ -33,8 +35,10 @@ class DetailsBook extends React.Component {
             console.log(e)
         })
     }
-    HandleRemoveSession(){
-            axios.get(`/api/removeallitems`)
+    HandleFlip(){
+        this.setState(prevState=>({
+            isFlipped: !prevState.isFlipped
+        }))
     }
     render(){
         const{book} = this.state;
@@ -42,7 +46,12 @@ class DetailsBook extends React.Component {
             <div class="detailsbook">
                 <div class="singledisplay">
                     <div class="singledisplay--image">
-                    <img class="singledisplay--image--front" src={frontimage}/>
+                    {book.map(book=>(
+                        <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="horizontal">
+                        <img onClick={() => this.HandleFlip()} class="singledisplay--image--front" src={`../images/${book.frontimage}`}/>
+                        <img onClick={() => this.HandleFlip()} class="singledisplay--image--front" src={`../images/${book.backimage}`}/>
+                        </ReactCardFlip>
+                    ))}
                     </div>
                     <div class="singledisplay--specs">
                         <div class="singledisplay--specs--header">
@@ -87,11 +96,14 @@ class DetailsBook extends React.Component {
                             <form onSubmit={this.HandleAddToCart}>
                                 <button type="submit" class="singledisplay--addtocart--button--button">Add to cart</button>
                             </form>
-                            <form onSubmit={this.HandleRemoveSession}>
-                            <button type="submit" class="singledisplay--addtocart--button--button">Remove session</button>
-                        </form>
                         </div>
                     </div>
+                </div>
+                <div class="description">
+                   <h3>Description</h3><br/>
+                   {book.map(book=>(
+                    <p class="description--body">{book.description}</p>
+                ))}
                 </div>
             </div>
         )

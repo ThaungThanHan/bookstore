@@ -4,8 +4,6 @@ import ReactDOM, { render } from 'react-dom';
 import {BrowserRouter,Route, Link, Switch} from 'react-router-dom';
 import logo from '../../images/Bookadian.png';
 import Sidebar from './Sidebar';
-import frontimage from '../../images/narutofront.jpg';
-import backimage from '../../images/narutoback.jpg';
 
 class Admin extends React.Component {
     constructor(props){
@@ -31,11 +29,11 @@ class Admin extends React.Component {
                     <hr/>
                     <div class="books--display">
                     {books.map(book=>(
-                        <div class="books--display--cards">
+                        <div class="books--display--cards">                        
                         <div class="books--display--cards--image">
-                        <img class="books--display--cards--image--image" src={frontimage}/>
+                        <img class="books--display--cards--image--image" src={'images/'+book.frontimage}/>
                         <Link to={'/books/'+book.id}>
-                        <img class="books--display--cards--image--image2" src={backimage}/>
+                        <img class="books--display--cards--image--image2" src={'images/'+book.backimage}/>
                         </Link>
                         </div>
                         <div class="books--display--cards--body">

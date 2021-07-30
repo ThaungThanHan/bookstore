@@ -26,25 +26,32 @@ class AdminCreateBooks extends React.Component {
             dimensions:'',
             isbn10:'',
             isbn13:'',
-            fromtimage:'',
-            backimage:''
+            frontimage:[],
+            backimage:[]
         }
         this.handleCreateBooks = this.handleCreateBooks.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleImageChange = this.handleImageChange.bind(this);
-
+        this.handlefrontimagechange = this.handlefrontimagechange.bind(this);
+        this.handlebackimagechange = this.handlebackimagechange.bind(this);
     }
     handleInputChange(event){
         this.setState({
             [event.target.name] : event.target.value,
         })
     }
-    handleImageChange(event){
+    handlefrontimagechange(event){
         this.setState({
-            frontimage:event.target.files[0],
-            backimage:event.target.files[1]
+            frontimage:event.target.files[0]
         })
-        console.log(this.state.backimage);
+        window.removeEventListener
+        console.log(this.state.frontimage);
+    }
+    handlebackimagechange(event){
+        this.setState({
+            backimage:event.target.files[0]
+        })
+        window.removeEventListener
+        console.log(event.target.files[1]);
     }
     handleCreateBooks(e){
         e.preventDefault();
@@ -65,9 +72,10 @@ class AdminCreateBooks extends React.Component {
             isbn10:this.state.isbn10,
             isbn13:this.state.isbn13,
         }
-        const formData = new FormData();
-        formData.append('frontimage',this.state.frontimage);
-        formData.append('backimage',this.state.backimage);
+        const {frontimage,backimage} = this.state;
+        const formData = new FormData();    // FormData is so good, can be used when sending multiple form data to axios post
+        formData.append('frontimage',frontimage);
+        formData.append('backimage',backimage);
         formData.append('admininput',JSON.stringify(admininput));
         axios({
             method: 'post',
@@ -152,8 +160,12 @@ class AdminCreateBooks extends React.Component {
                         <input style={{width:'30rem'}} name="isbn13" onChange={this.handleInputChange} value={this.state.isbn13} class="billingdetails--input" type="text" placeholder="Enter you isbn13" required />
                         </div>
                         <div class="billingdetails--inputbox">
-                        <span class="billingdetails--details">Front & Back cover </span><span>(please select two at once)</span>
-                        <input style={{width:'30rem'}} name="frontimage" onChange={this.handleImageChange} class="billingdetails--input" type="file" placeholder="Enter you frontimage" multiple="multiple" />
+                        <span class="billingdetails--details">Front cover </span>
+                        <input style={{width:'30rem'}} name="frontimage" onChange={this.handlefrontimagechange} class="billingdetails--input" type="file" placeholder="Enter you frontimage"/>
+                        </div>
+                        <div class="billingdetails--inputbox">
+                        <span class="billingdetails--details">Back cover </span>
+                        <input style={{width:'30rem'}} name="backimage" onChange={this.handlebackimagechange} class="billingdetails--input" type="file" placeholder="Enter you frontimage" />
                         </div>
                         <button class="billingdetails--button" type="submit">Create</button>
                         </form>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
-import {BrowserRouter,Route, Link, Switch} from 'react-router-dom';
+import {BrowserRouter,Route, Link, Switch,Redirect} from 'react-router-dom';
 import logo from '../../images/Bookadian.png';
 class Register extends React.Component {
     constructor(props){
@@ -10,10 +10,19 @@ class Register extends React.Component {
             name:'',
             email:'',
             password:'',
-            confirm_password:''
+            confirm_password:'',
+            loggeduser:{}
         }
         this.handleRegister = this.handleRegister.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+    }
+    componentDidMount(){
+        axios.get(`/api/loggeduser`).then(response=>{
+            this.setState({
+                loggeduser:response.data
+            })
+            console.log(this.state.loggeduser)
+        })
     }
     handleRegister(e){
         e.preventDefault();
@@ -23,8 +32,8 @@ class Register extends React.Component {
             email:this.state.email,
             confirm_password:this.state.confirm_password
         }
-        axios.post(`/api/register`,userinput).then(response=>{
-            history.push('/')
+        axios.post(`/api/registration`,userinput).then(response=>{
+            window.location = "/"
         }).catch(error=>{
             console.log(error.response.data)
         })
@@ -35,8 +44,13 @@ class Register extends React.Component {
         })
     }
     render(){
+        const {loggeduser} = this.state;
         return(
-            <div class="registration">
+            <div>
+                {loggeduser.name ? 
+                    <Redirect to="/" />
+                :
+                <div class="registration">
                 <div  class="reigsterform">
                     <h1>Join us! Start shopping today!</h1>
                     <form onSubmit={this.handleRegister}>
@@ -60,6 +74,8 @@ class Register extends React.Component {
                     </form>
                     <span>Already have an account? <a href="/logging">Log in here!</a></span>
                 </div>  
+            </div>
+                }
             </div>
         )
     }

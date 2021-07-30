@@ -9787,7 +9787,7 @@ li, a {
 }
 
 .firstnav {
-  width: 10rem;
+  width: 15rem;
   display: flex;
   text-decoration: none;
   list-style: none;
@@ -9795,7 +9795,7 @@ li, a {
 }
 
 .secondnav {
-  width: 10rem;
+  width: 12rem;
   display: flex;
   text-decoration: none;
   list-style: none;
@@ -9804,7 +9804,7 @@ li, a {
 
 .secondnav--span {
   position: absolute;
-  margin-left: 8.5rem;
+  margin-left: 11.2rem;
   margin-top: 1rem;
   font-size: .5rem;
   text-align: center;
@@ -9994,14 +9994,48 @@ li, a {
 }
 
 .books--filter {
-  border: 1px solid purple;
+  padding: 1rem 2rem;
   height: auto;
   width: 20rem;
 }
 
+.books--filter--searchbar {
+  width: 12rem;
+  padding: .5rem;
+  border: none;
+  border-radius: 2rem;
+  outline: none;
+}
+
+.books--filter--categories {
+  display: block;
+  text-align: center;
+}
+
+.books--filter--categories--categoryno {
+  cursor: pointer;
+  color: black;
+  margin-bottom: 0;
+  padding: .5rem;
+  transition: all .5s;
+}
+
+.books--filter--categories--categoryno:hover {
+  background-color: #e3b9b3;
+  color: white;
+}
+
+.books--filter--categories--categoryyes {
+  cursor: pointer;
+  margin-bottom: 0;
+  padding: .5rem;
+  background-color: #e3b9b3;
+  color: white;
+}
+
 .books--display {
   height: auto;
-  min-width: 32rem;
+  min-width: 100rem;
   display: flex;
   flex-wrap: wrap;
   padding: 1.5rem;
@@ -10180,6 +10214,18 @@ li, a {
 .singledisplay--addtocart--button--button:active {
   position: relative;
   top: 1px;
+}
+
+.description {
+  border: 1px solid red;
+  width: 90rem;
+  height: 40rem;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.description--body {
+  font-size: 1rem;
 }
 
 .cartpage {
@@ -10482,7 +10528,7 @@ li, a {
 }
 
 .adminsidebar--links:hover {
-  background-color: antiquewhite;
+  background-color: #facc8f;
   text-decoration: none;
 }
 
@@ -10494,5 +10540,127 @@ li, a {
 .admincontent {
   padding: 1rem 4rem;
   width: 100vw;
+  height: 100vh;
+}
+
+.table-headerbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.table-headers {
+  display: flex;
+}
+
+.table-headers--header:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.confirmbutton {
+  color: white;
+  background-color: #10A5F5;
+  text-align: center;
+  padding: .5rem;
+  width: 10rem;
+  border-radius: 20rem;
+}
+
+.notconfirmbutton {
+  color: white;
+  background-color: red;
+  text-align: center;
+  padding: .5rem;
+  width: 10rem;
+  border-radius: 20rem;
+}
+
+.actionbuttons {
+  margin-top: -1rem;
+}
+
+.actionbutton--approve {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 1rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 50%;
+}
+
+.actionbutton--approve:hover {
+  background: #09d38994;
+  background-image: linear-gradient(to bottom, #04AA6D, #09d38994);
+  text-decoration: none;
+}
+
+.actionbutton--cancel {
+  background-color: #c04250;
+  border: none;
+  color: white;
+  padding: 1rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 50%;
+}
+
+.actionbutton--cancel:hover {
+  background: #f33f54;
+  background-image: linear-gradient(to bottom, #c04250, #f33f54);
+  text-decoration: none;
+}
+
+.Modal {
+  display: flex;
+  outline: none;
+  position: absolute;
+  padding: 1rem;
+  margin-left: 30%;
+  top: 10%;
+  background-color: papayawhip;
+  width: 50rem;
+  height: 30rem;
+}
+
+.Modal--itemslist {
+  width: 50rem;
+  background-color: #fff;
+  padding: .5rem;
+}
+
+.Modal--itemslist--close {
+  position: absolute;
+  padding: .2rem .5rem;
+  border: none;
+  background-color: #fff;
+  font-size: 1.5rem;
+  margin-left: 45rem;
+  margin-top: -2.8rem;
+}
+
+.Modal--itemslist--view {
+  background-color: #FFCC00;
+  margin-top: -1rem;
+  border: none;
+  color: white;
+  padding: 1rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 20%;
+}
+
+.Modal--itemslist--view:hover {
+  background: #FFEA17;
+  background-image: linear-gradient(to bottom, #FFCC00, #FFEA17);
+  text-decoration: none;
 }
 

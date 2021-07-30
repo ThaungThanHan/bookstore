@@ -13,14 +13,12 @@ class BooksController extends Controller
     }
     public function create(Request $request){
         $decodedrequest = json_decode($request->admininput);    // jsonify string formdata back.
-        $imagerequest = json_decode($request->frontimage);
+        $requestall = $request->all();
         $books = new Book;
         $books->title = $decodedrequest->title;
         $books->edition = $decodedrequest->edition;
         $books->author = $decodedrequest->author;
-        $books->genre = $decodedrequest->genre;
-        $books->genre2 = $decodedrequest->genre2;
-        $books->genre3 = $decodedrequest->genre3;
+        $books->category_id = $decodedrequest->genre;
         $books->price = $decodedrequest->price;
         $books->description = $decodedrequest->description;
         $books->rating = $decodedrequest->rating;
@@ -31,15 +29,15 @@ class BooksController extends Controller
         $books->isbn10 = $decodedrequest->isbn10;
         $books->isbn13 = $decodedrequest->isbn13;
 
-        $imageNameFront = date('YmdHis').".".request()->frontimage->getClientOriginalExtension();   // get image name from file
+        $imageNameFront = date('YmdHis')."front".".".request()->frontimage->getClientOriginalExtension();   // get image name from file
         request()->frontimage->move(public_path('images'),$imageNameFront);    // move the file
         $books->frontimage = $imageNameFront;   // save the image name into database
 
-        $imageNameBack = date('YmdHis').".".request()->backimage->getClientOriginalExtension();   // get image name from file
+        $imageNameBack = date('YmdHis')."back".".".request()->backimage->getClientOriginalExtension();   // get image name from file
         request()->backimage->move(public_path('images'),$imageNameBack);    // move the file
         $books->backimage = $imageNameBack;   // save the image name into database
 
         $books->save();
-        // return response()->json($imagerequest);
+        return response()->json($requestall);
     }
 }

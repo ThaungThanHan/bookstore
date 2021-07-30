@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\CategoriesTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,5 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(BooksTableSeeder::class);
         $this->call(CouponsTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
     }
 }

@@ -11,6 +11,7 @@ import Register from './Register';
 import Login from './Login';
 import Admin from './Admin';
 import AdminCreateBooks from './AdminCreateBooks';
+import ConfirmOrders from './ConfirmOrders';
 class App extends React.Component {
     render(){
         return(
@@ -26,7 +27,8 @@ class App extends React.Component {
                     <Route exact path="/logging" component={Login} />
 
                     <Route exact path="/admin" component={Admin} />
-                    <Route exact path="/admincreatebooks" component={AdminCreateBooks} />
+                    <Route exact path="/admin/createbooks" component={AdminCreateBooks} />
+                    <Route exact path="/admin/orders" component={ConfirmOrders} />
                 </Switch>
             </Router>
         )

@@ -18,9 +18,7 @@ class CreateBooksTable extends Migration
             $table->string('title')->unique();
             $table->string('author');
             $table->string('edition');
-            $table->string('genre');
-            $table->string('genre2')->nullable();
-            $table->string('genre3')->nullable();
+            $table->string('category_id');
             $table->integer('price');
             $table->longtext('description');
             $table->tinyInteger('rating');

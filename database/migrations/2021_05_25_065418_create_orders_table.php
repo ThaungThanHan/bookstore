@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('state');
             $table->text('order');
             $table->integer('grand_total');
+            $table->tinyInteger('is_confirmed')->default('0');
             $table->timestamps();
         });
     }

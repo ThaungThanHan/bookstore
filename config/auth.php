@@ -40,11 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
+    
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport', // this instructs my app to use Passport's TokenGuard when authenticating inocming API Reqs.
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
 

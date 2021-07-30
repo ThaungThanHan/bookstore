@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Cart;
-use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 
@@ -20,7 +21,15 @@ class ShopBooksController extends Controller
     public function index()
     {
         $books = Book::all();
-        return response()->json($books);   
+        $maincate = Category::all();
+        // $genres = Category::find(2)->books()->where('category_id',2)->get();
+        return response()->json([$books,$maincate]);   
+    }
+
+    public function categorize($cateid)
+    {
+        $categorized = Book::where('category_id',$cateid)->get();
+        return response()->json($categorized);
     }
 
     public function show($id)

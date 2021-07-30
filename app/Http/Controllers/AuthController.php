@@ -1,63 +1,60 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
+
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class AuthController extends Controller
 {
+    public $successStatus = 200;
+
     public function register(Request $request){
-        $fields = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|same:confirm_password',
-            'confirm_password'=>'required'
-        ]);
-
-        $user = User::create([
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => bcrypt($fields['password']),
-            'role'=> 0
-        ]);
-
-        $token = $user->createToken('myapptoken')->plainTextToken;
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-        return response($response,201);
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $success['token'] = $user->createToken('MyApp')->accessToken;
+        $success['name'] = $user->name;
+        return response()->json(['success'=>$success]);
     }
-    public function logout(Request $request){
-        auth()->user()->tokens()->delete();
-        return [
-            'message' => 'Logged out'
-        ];
+    public function loggingout(Request $request){
+        if (Auth::check()) {
+            Auth::user()->AauthAcessToken()->delete();
+            Auth::logout();
+         }else{
+            return response()->json([
+                'message'=> 'Already logged out'
+            ]);
+         }
+
+        return response()->json([
+            'message'=> 'Successfully logged out'
+        ]);
     }
     public function login(Request $request){
-        $fields = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-
-        //check email
-        $user = User::where('email',$fields['email'])->first();
-        //check password
-        if(!$user || !Hash::check($fields['password'],$user->password)){
-            return response([
-                'message'=>'Wrong credentials!'
-            ], 401);
-        };
-
-        $token = $user->createToken('myapptoken')->plainTextToken;
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-        $loggeduser = auth()->user();
-        return response()->json($loggeduser);
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+            $user = Auth::user();
+            $success['token'] = $user->createToken('MyApp')->accessToken;
+            // $token = $success->accessToken;
+            return response()->json(['success'=>$success],$this->successStatus);
+        }
+        else{
+            return response()->json(['error'=>'Unauthorized'],401);
+        }
+    }
+    public function details(){
+        if(Auth::check()){
+            $user = Auth::user();
+        }else{
+            $user= null;
+        }
+        return response()->json($user);
     }
 }
