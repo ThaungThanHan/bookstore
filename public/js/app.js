@@ -3136,7 +3136,7 @@ var Admin = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_Sidebar__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "admincontent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("a", {
-        href: "/admincreatebooks"
+        href: "/admin/createbooks"
       }, "Create books"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "books--display"
       }, books.map(function (book) {
@@ -3218,7 +3218,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var FormData = __webpack_require__(/*! form-data */ "../../node_modules/form-data/lib/browser.js");
+var FormData = __webpack_require__(/*! form-data */ "./node_modules/form-data/lib/browser.js");
 
 
 
@@ -3750,9 +3750,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _images_narutofront_jpg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../images/narutofront.jpg */ "./resources/images/narutofront.jpg");
-/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
-/* harmony import */ var _components_ShopBook__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/ShopBook */ "./resources/js/components/ShopBook.js");
+/* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
+/* harmony import */ var _components_ShopBook__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ShopBook */ "./resources/js/components/ShopBook.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3776,7 +3775,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -3835,7 +3833,7 @@ var CartPage = /*#__PURE__*/function (_React$Component) {
           coupon: couponsession
         });
 
-        console.log(_this2.state.coupon);
+        console.log(_this2.state.books);
       });
     }
   }, {
@@ -3941,7 +3939,7 @@ var CartPage = /*#__PURE__*/function (_React$Component) {
             height: '8rem',
             marginRight: '2rem'
           },
-          src: _images_narutofront_jpg__WEBPACK_IMPORTED_MODULE_3__.default
+          src: "images/".concat(book.item.frontimage)
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
           "class": "productdetails--details"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h5", {
@@ -4084,8 +4082,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _images_Bookadian_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../images/Bookadian.png */ "./resources/images/Bookadian.png");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _images_Bookadian_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../images/Bookadian.png */ "./resources/images/Bookadian.png");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -4116,6 +4116,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Checkout = /*#__PURE__*/function (_React$Component) {
   _inherits(Checkout, _React$Component);
 
@@ -4136,7 +4137,8 @@ var Checkout = /*#__PURE__*/function (_React$Component) {
       address: '',
       city: '',
       phone: '',
-      state: ''
+      state: '',
+      ModalOpen: false
     };
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -4173,6 +4175,8 @@ var Checkout = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
       var userinput = {
         full_name: this.state.full_name,
@@ -4182,7 +4186,11 @@ var Checkout = /*#__PURE__*/function (_React$Component) {
         city: this.state.city,
         state: this.state.state
       };
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/submitorder", userinput).then(function (response) {})["catch"](function (error) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/submitorder", userinput).then(function (response) {
+        _this3.setState({
+          ModalOpen: true
+        });
+      })["catch"](function (error) {
         console.log(error.response.data);
       });
     }
@@ -4195,7 +4203,22 @@ var Checkout = /*#__PURE__*/function (_React$Component) {
           coupon = _this$state.coupon;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "checkout"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement((react_modal__WEBPACK_IMPORTED_MODULE_3___default()), {
+        isOpen: this.state.ModalOpen
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("img", {
+        "class": "logo",
+        src: _images_Bookadian_png__WEBPACK_IMPORTED_MODULE_4__.default
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h2", {
+        style: {
+          textAlign: 'center'
+        }
+      }, "Your order has been submitted successfully. We will contact you."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+        to: "/books"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h4", {
+        style: {
+          textAlign: 'center'
+        }
+      }, "Go back to shop?"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
         "class": "orderform"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h3", null, "Billing address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("form", {
         onSubmit: this.handleSubmit
@@ -4276,7 +4299,7 @@ var Checkout = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
         "class": "billingdetails--button",
         type: "submit"
-      }, "Submit Order"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      }, "Submit Order"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: "/cart"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
         "class": "billingdetails--button2"
@@ -4290,7 +4313,11 @@ var Checkout = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
           "class": "orderitems--items"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-          "class": "orderitems--items"
+          "class": "orderitems--items",
+          style: {
+            width: '22rem',
+            height: '2rem'
+          }
         }, book.item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
           "class": "orderitems--items"
         }, book.qty), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
@@ -5578,14 +5605,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Header */ "./resources/js/components/Header.js");
-/* harmony import */ var _images_narutofront_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../images/narutofront.jpg */ "./resources/images/narutofront.jpg");
-/* harmony import */ var _images_narutoback_jpg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../images/narutoback.jpg */ "./resources/images/narutoback.jpg");
-/* harmony import */ var _images_herocoffee_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../images/herocoffee.png */ "./resources/images/herocoffee.png");
-/* harmony import */ var _images_heromark_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../images/heromark.png */ "./resources/images/heromark.png");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _images_herocoffee_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../images/herocoffee.png */ "./resources/images/herocoffee.png");
+/* harmony import */ var _images_heromark_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../images/heromark.png */ "./resources/images/heromark.png");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5612,8 +5637,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
-
+ // import frontimage from '../../images/narutofront.jpg';
+// import backimage from '../../images/narutoback.jpg';
 
 
 
@@ -5729,7 +5754,7 @@ var ShopBook = /*#__PURE__*/function (_React$Component) {
         href: "#"
       }, "Grab coffee here")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         "class": "herogrids--coffee--image",
-        src: _images_herocoffee_png__WEBPACK_IMPORTED_MODULE_6__.default
+        src: _images_herocoffee_png__WEBPACK_IMPORTED_MODULE_4__.default
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         "class": "herogrids--accessory"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5747,7 +5772,7 @@ var ShopBook = /*#__PURE__*/function (_React$Component) {
         href: "#"
       }, "Check out accessories")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         "class": "herogrids--accessory--image",
-        src: _images_heromark_png__WEBPACK_IMPORTED_MODULE_7__.default
+        src: _images_heromark_png__WEBPACK_IMPORTED_MODULE_5__.default
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         "class": "books"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5780,14 +5805,18 @@ var ShopBook = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           "class": "books--display--cards--image--image",
           src: "images/".concat(book.frontimage)
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
           to: '/books/' + book.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           "class": "books--display--cards--image--image2",
           src: "images/".concat(book.backimage)
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           "class": "books--display--cards--body"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, book.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, book.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, book.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", {
+          style: {
+            height: '2rem'
+          }
+        }, book.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           "class": "books--display--cards--body--priceandbutton"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, "$ ", book.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           onClick: function onClick() {
@@ -5802,12 +5831,12 @@ var ShopBook = /*#__PURE__*/function (_React$Component) {
           "class": "books--display--cards--image"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           "class": "books--display--cards--image--image",
-          src: _images_narutofront_jpg__WEBPACK_IMPORTED_MODULE_4__.default
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Link, {
+          src: frontimage
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
           to: '/books/' + book.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           "class": "books--display--cards--image--image2",
-          src: _images_narutoback_jpg__WEBPACK_IMPORTED_MODULE_5__.default
+          src: backimage
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           "class": "books--display--cards--body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, book.author), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h5", null, book.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -10789,21 +10818,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/images/narutoback.jpg":
-/*!*****************************************!*\
-  !*** ./resources/images/narutoback.jpg ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/narutoback.jpg?7501fc50626b5714086d0e672a52859b");
-
-/***/ }),
-
 /***/ "./resources/images/narutofront.jpg":
 /*!******************************************!*\
   !*** ./resources/images/narutofront.jpg ***!
@@ -10816,6 +10830,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/narutofront.jpg?eb46f7083298794743f856f1baf2ef6d");
+
+/***/ }),
+
+/***/ "./node_modules/form-data/lib/browser.js":
+/*!***********************************************!*\
+  !*** ./node_modules/form-data/lib/browser.js ***!
+  \***********************************************/
+/***/ ((module) => {
+
+/* eslint-env browser */
+module.exports = typeof self == 'object' ? self.FormData : window.FormData;
+
 
 /***/ }),
 
@@ -76037,6 +76063,10 @@ var bodyOpenClassName = exports.bodyOpenClassName = "ReactModal__Body--open";
 
 var isReact16 = _safeHTMLElement.canUseDOM && _reactDom2.default.createPortal !== undefined;
 
+var createHTMLElement = function createHTMLElement(name) {
+  return document.createElement(name);
+};
+
 var getCreatePortal = function getCreatePortal() {
   return isReact16 ? _reactDom2.default.createPortal : _reactDom2.default.unstable_renderSubtreeIntoContainer;
 };
@@ -76083,7 +76113,7 @@ var Modal = function (_Component) {
       if (!_safeHTMLElement.canUseDOM) return;
 
       if (!isReact16) {
-        this.node = document.createElement("div");
+        this.node = createHTMLElement("div");
       }
       this.node.className = this.props.portalClassName;
 
@@ -76152,7 +76182,7 @@ var Modal = function (_Component) {
       }
 
       if (!this.node && isReact16) {
-        this.node = document.createElement("div");
+        this.node = createHTMLElement("div");
       }
 
       var createPortal = getCreatePortal();
@@ -76273,6 +76303,12 @@ Modal.defaultStyles = {
 
 
 (0, _reactLifecyclesCompat.polyfill)(Modal);
+
+if (true) {
+  Modal.setCreateHTMLElement = function (fn) {
+    return createHTMLElement = fn;
+  };
+}
 
 exports.default = Modal;
 
@@ -76418,14 +76454,16 @@ var ModalPortal = function (_Component) {
         }
 
         _this.setState({ isOpen: true }, function () {
-          _this.setState({ afterOpen: true });
+          _this.openAnimationFrame = requestAnimationFrame(function () {
+            _this.setState({ afterOpen: true });
 
-          if (_this.props.isOpen && _this.props.onAfterOpen) {
-            _this.props.onAfterOpen({
-              overlayEl: _this.overlay,
-              contentEl: _this.content
-            });
-          }
+            if (_this.props.isOpen && _this.props.onAfterOpen) {
+              _this.props.onAfterOpen({
+                overlayEl: _this.overlay,
+                contentEl: _this.content
+              });
+            }
+          });
         });
       }
     };
@@ -76590,6 +76628,7 @@ var ModalPortal = function (_Component) {
         this.afterClose();
       }
       clearTimeout(this.closeTimer);
+      cancelAnimationFrame(this.openAnimationFrame);
     }
   }, {
     key: "beforeOpen",
@@ -76726,13 +76765,14 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
+exports.resetState = resetState;
+exports.log = log;
 exports.assertNodeList = assertNodeList;
 exports.setElement = setElement;
 exports.validateElement = validateElement;
 exports.hide = hide;
 exports.show = show;
 exports.documentNotReadyOrSSRTesting = documentNotReadyOrSSRTesting;
-exports.resetForTesting = resetForTesting;
 
 var _warning = __webpack_require__(/*! warning */ "./node_modules/warning/warning.js");
 
@@ -76743,6 +76783,35 @@ var _safeHTMLElement = __webpack_require__(/*! ./safeHTMLElement */ "./node_modu
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var globalElement = null;
+
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function resetState() {
+  if (globalElement) {
+    if (globalElement.removeAttribute) {
+      globalElement.removeAttribute("aria-hidden");
+    } else if (globalElement.length != null) {
+      globalElement.forEach(function (element) {
+        return element.removeAttribute("aria-hidden");
+      });
+    } else {
+      document.querySelectorAll(globalElement).forEach(function (element) {
+        return element.removeAttribute("aria-hidden");
+      });
+    }
+  }
+  globalElement = null;
+}
+
+/* istanbul ignore next */
+function log() {
+  if (false) {}
+  var check = globalElement || {};
+  console.log("ariaAppHider ----------");
+  console.log(check.nodeName, check.className, check.id);
+  console.log("end ariaAppHider ----------");
+}
+/* eslint-enable no-console */
 
 function assertNodeList(nodeList, selector) {
   if (!nodeList || !nodeList.length) {
@@ -76830,20 +76899,22 @@ function documentNotReadyOrSSRTesting() {
   globalElement = null;
 }
 
-function resetForTesting() {
-  globalElement = null;
-}
-
 /***/ }),
 
 /***/ "./node_modules/react-modal/lib/helpers/bodyTrap.js":
 /*!**********************************************************!*\
   !*** ./node_modules/react-modal/lib/helpers/bodyTrap.js ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.resetState = resetState;
+exports.log = log;
 
 var _portalOpenInstances = __webpack_require__(/*! ./portalOpenInstances */ "./node_modules/react-modal/lib/helpers/portalOpenInstances.js");
 
@@ -76857,6 +76928,34 @@ var before = void 0,
     after = void 0,
     instances = [];
 
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function resetState() {
+  var _arr = [before, after];
+
+  for (var _i = 0; _i < _arr.length; _i++) {
+    var item = _arr[_i];
+    if (!item) continue;
+    item.parentNode && item.parentNode.removeChild(item);
+  }
+  before = after = null;
+  instances = [];
+}
+
+/* istanbul ignore next */
+function log() {
+  console.log("bodyTrap ----------");
+  console.log(instances.length);
+  var _arr2 = [before, after];
+  for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
+    var item = _arr2[_i2];
+    var check = item || {};
+    console.log(check.nodeName, check.className, check.id);
+  }
+  console.log("edn bodyTrap ----------");
+}
+/* eslint-enable no-console */
+
 function focusContent() {
   if (instances.length === 0) {
     if (true) {
@@ -76869,7 +76968,7 @@ function focusContent() {
 }
 
 function bodyTrap(eventType, openInstances) {
-  if (!before || !after) {
+  if (!before && !after) {
     before = document.createElement("div");
     before.setAttribute("data-react-modal-body-trap", "");
     before.style.position = "absolute";
@@ -76917,34 +77016,57 @@ _portalOpenInstances2.default.subscribe(bodyTrap);
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.dumpClassLists = dumpClassLists;
+exports.resetState = resetState;
+exports.log = log;
 var htmlClassList = {};
 var docBodyClassList = {};
 
-function dumpClassLists() {
-  if (true) {
-    var classes = document.getElementsByTagName("html")[0].className;
-    var buffer = "Show tracked classes:\n\n";
-
-    buffer += "<html /> (" + classes + "):\n";
-    for (var x in htmlClassList) {
-      buffer += "  " + x + " " + htmlClassList[x] + "\n";
-    }
-
-    classes = document.body.className;
-
-    // eslint-disable-next-line max-len
-    buffer += "\n\ndoc.body (" + classes + "):\n";
-    for (var _x in docBodyClassList) {
-      buffer += "  " + _x + " " + docBodyClassList[_x] + "\n";
-    }
-
-    buffer += "\n";
-
-    // eslint-disable-next-line no-console
-    console.log(buffer);
-  }
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function removeClass(at, cls) {
+  at.classList.remove(cls);
 }
+
+/* istanbul ignore next */
+function resetState() {
+  var htmlElement = document.getElementsByTagName("html")[0];
+  for (var cls in htmlClassList) {
+    removeClass(htmlElement, htmlClassList[cls]);
+  }
+
+  var body = document.body;
+  for (var _cls in docBodyClassList) {
+    removeClass(body, docBodyClassList[_cls]);
+  }
+
+  htmlClassList = {};
+  docBodyClassList = {};
+}
+
+/* istanbul ignore next */
+function log() {
+  if (false) {}
+
+  var classes = document.getElementsByTagName("html")[0].className;
+  var buffer = "Show tracked classes:\n\n";
+
+  buffer += "<html /> (" + classes + "):\n";
+  for (var x in htmlClassList) {
+    buffer += "  " + x + " " + htmlClassList[x] + "\n";
+  }
+
+  classes = document.body.className;
+
+  buffer += "\n\ndoc.body (" + classes + "):\n";
+  for (var _x in docBodyClassList) {
+    buffer += "  " + _x + " " + docBodyClassList[_x] + "\n";
+  }
+
+  buffer += "\n";
+
+  console.log(buffer);
+}
+/* eslint-enable no-console */
 
 /**
  * Track the number of reference of a class.
@@ -77034,6 +77156,8 @@ var remove = exports.remove = function remove(element, classString) {
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
+exports.resetState = resetState;
+exports.log = log;
 exports.handleBlur = handleBlur;
 exports.handleFocus = handleFocus;
 exports.markForFocusLater = markForFocusLater;
@@ -77051,6 +77175,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var focusLaterElements = [];
 var modalElement = null;
 var needToFocus = false;
+
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function resetState() {
+  focusLaterElements = [];
+}
+
+/* istanbul ignore next */
+function log() {
+  if (false) {}
+  console.log("focusManager ----------");
+  focusLaterElements.forEach(function (f) {
+    var check = f || {};
+    console.log(check.nodeName, check.className, check.id);
+  });
+  console.log("end focusManager ----------");
+}
+/* eslint-enable no-console */
 
 function handleBlur() {
   needToFocus = true;
@@ -77132,7 +77274,7 @@ function teardownScopedFocus() {
 /*!*********************************************************************!*\
   !*** ./node_modules/react-modal/lib/helpers/portalOpenInstances.js ***!
   \*********************************************************************/
-/***/ ((module, exports) => {
+/***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
@@ -77140,6 +77282,8 @@ function teardownScopedFocus() {
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
+exports.log = log;
+exports.resetState = resetState;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -77193,8 +77337,24 @@ var PortalOpenInstances = function PortalOpenInstances() {
 
 var portalOpenInstances = new PortalOpenInstances();
 
+/* eslint-disable no-console */
+/* istanbul ignore next */
+function log() {
+  console.log("portalOpenInstances ----------");
+  console.log(portalOpenInstances.openInstances.length);
+  portalOpenInstances.openInstances.forEach(function (p) {
+    return console.log(p);
+  });
+  console.log("end portalOpenInstances ----------");
+}
+
+/* istanbul ignore next */
+function resetState() {
+  portalOpenInstances = new PortalOpenInstances();
+}
+/* eslint-enable no-console */
+
 exports.default = portalOpenInstances;
-module.exports = exports["default"];
 
 /***/ }),
 
@@ -77364,11 +77524,17 @@ function hidesContents(element) {
   // If the node is empty, this is good enough
   if (zeroSize && !element.innerHTML) return true;
 
-  // Otherwise we need to check some styles
-  var style = window.getComputedStyle(element);
-  return zeroSize ? style.getPropertyValue("overflow") !== "visible" ||
-  // if 'overflow: visible' set, check if there is actually any overflow
-  element.scrollWidth <= 0 && element.scrollHeight <= 0 : style.getPropertyValue("display") == "none";
+  try {
+    // Otherwise we need to check some styles
+    var style = window.getComputedStyle(element);
+    return zeroSize ? style.getPropertyValue("overflow") !== "visible" ||
+    // if 'overflow: visible' set, check if there is actually any overflow
+    element.scrollWidth <= 0 && element.scrollHeight <= 0 : style.getPropertyValue("display") == "none";
+  } catch (exception) {
+    // eslint-disable-next-line no-console
+    console.warn("Failed to inspect element style");
+    return false;
+  }
 }
 
 function visible(element) {
@@ -82619,18 +82785,6 @@ if (__DEV__) {
 }
 
 module.exports = warning;
-
-
-/***/ }),
-
-/***/ "../../node_modules/form-data/lib/browser.js":
-/*!***************************************************!*\
-  !*** ../../node_modules/form-data/lib/browser.js ***!
-  \***************************************************/
-/***/ ((module) => {
-
-/* eslint-env browser */
-module.exports = typeof self == 'object' ? self.FormData : window.FormData;
 
 
 /***/ })

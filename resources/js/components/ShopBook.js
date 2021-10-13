@@ -3,8 +3,8 @@ import axios from 'axios';
 import ReactDOM, { render } from 'react-dom';
 import {BrowserRouter,Route, Link, Switch} from 'react-router-dom';
 import Header from '../components/Header';
-import frontimage from '../../images/narutofront.jpg';
-import backimage from '../../images/narutoback.jpg';
+// import frontimage from '../../images/narutofront.jpg';
+// import backimage from '../../images/narutoback.jpg';
 import herocoffee from '../../images/herocoffee.png';
 import heromark from '../../images/heromark.png';
 import { isEmpty } from 'lodash';
@@ -109,7 +109,7 @@ class ShopBook extends React.Component{
                             </div>
                             <div class="books--display--cards--body">
                                 <span>{book.author}</span>
-                                <h5>{book.title}</h5><br/><br/>
+                                <h5 style={{height:'2rem'}}>{book.title}</h5><br/><br/>
                                 <div class="books--display--cards--body--priceandbutton">
                                 <p>$ {book.price}</p>
                                 <button onClick={()=>this.addtocart(book.id)} class="books--display--cards--body--priceandbutton--button">Add to cart</button>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import {BrowserRouter,Route, Link, Switch} from 'react-router-dom';
-import frontimage from '../../images/narutofront.jpg';
+
 
 import Header from '../components/Header';
 import ShopBook from '../components/ShopBook';
@@ -42,7 +42,7 @@ class CartPage extends React.Component {
                 TotalPrice:CartTotal,
                 coupon:couponsession
             })
-            console.log(this.state.coupon)
+            console.log(this.state.books)
 
         })
     }
@@ -115,7 +115,7 @@ class CartPage extends React.Component {
                         <tr>
                         <td class="tg-0pky">
                             <div class="productdetails">
-                                <img style={{width:'7rem',height:'8rem',marginRight:'2rem'}}src={frontimage} />
+                                <img style={{width:'7rem',height:'8rem',marginRight:'2rem'}} src={`images/${book.item.frontimage}`} />
                                 <div class="productdetails--details">
                                     <h5 class="productdetails--details--detail">{book.item.title}</h5>
                                     <h6 class="productdetails--details--detail">{book.item.edition}</h6>

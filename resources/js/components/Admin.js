@@ -25,7 +25,7 @@ class Admin extends React.Component {
             <div class="adminpanel">
                 <Sidebar/>
                 <div class="admincontent">
-                    <a href="/admincreatebooks">Create books</a>
+                    <a href="/admin/createbooks">Create books</a>
                     <hr/>
                     <div class="books--display">
                     {books.map(book=>(

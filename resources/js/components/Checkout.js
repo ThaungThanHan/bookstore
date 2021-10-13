@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
+import ReactModal from 'react-modal';
 import {BrowserRouter,Route, Link, Switch} from 'react-router-dom';
 import logo from '../../images/Bookadian.png';
 class Checkout extends React.Component {
@@ -15,7 +16,8 @@ class Checkout extends React.Component {
             address:'',
             city:'',
             phone:'',
-            state:''
+            state:'',
+            ModalOpen:false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,7 +54,9 @@ class Checkout extends React.Component {
             state:this.state.state,
         }
         axios.post(`/api/submitorder`,userinput).then(response=>{
-
+            this.setState({
+                ModalOpen:true
+            })
         }).catch(error=>{
             console.log(error.response.data);
         })
@@ -61,6 +65,13 @@ class Checkout extends React.Component {
         const {books,TotalPrice,coupon} = this.state
         return(
                 <div class="checkout">
+                    <ReactModal isOpen={this.state.ModalOpen}>
+                        <img class="logo" src={logo} />
+                        <h2 style={{textAlign:'center'}} >
+                            Your order has been submitted successfully. We will contact you.
+                        </h2>
+                        <Link to="/books"><h4 style={{textAlign:'center'}}>Go back to shop?</h4></Link>
+                    </ReactModal>
                     <div class="orderform">
                         <h3>Billing address</h3>
                         <form onSubmit={this.handleSubmit}>
@@ -104,7 +115,7 @@ class Checkout extends React.Component {
                         <h4 style={{textAlign:'center'}}>Checkout Items</h4><hr/>
                         {books.map(book=>(
                             <div class="orderitems--items">
-                            <div class="orderitems--items">{book.item.title}</div>
+                            <div class="orderitems--items" style={{width:'22rem',height:'2rem'}}>{book.item.title}</div>
                             <div class="orderitems--items">{book.qty}</div>
                             <div class="orderitems--items">$ {book.item.price}</div>
                             </div>

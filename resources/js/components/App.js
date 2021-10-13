@@ -25,7 +25,6 @@ class App extends React.Component {
                     <Route exact path="/checkout" component={Checkout} />
                     <Route exact path="/registration" component={Register} />
                     <Route exact path="/logging" component={Login} />
-
                     <Route exact path="/admin" component={Admin} />
                     <Route exact path="/admin/createbooks" component={AdminCreateBooks} />
                     <Route exact path="/admin/orders" component={ConfirmOrders} />
